@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Assignment 6.4</title>
+	<style>
+        table, td {
+            border: 1px solid black;
+        }
+    </style>
+	<script type="text/javascript">
+		function rowcol(){
+			//Variable declaration
+			var r = 0;
+			var c = 0;
+			var text;
+			var err = "N";
+			var y;
+			var inputtxt = "";
+       
+            x  = document.getElementById("message");         //Error Message
+			y  = document.getElementsByTagName("input");     //To get List of Input tag 
+			r = document.getElementById("row").value         //To get Row inputted value
+			c = document.getElementById("col").value         //To get Column inputted value
+            
+            //For loop for reseting Input Tags to normal color.
+            for(var k =0;k< y.length;k++){
+		       y[k].style.backgroundColor = "white";
+	        }
+      
+            //Reseting Error message in DOM.
+            x.innerHTML = '';
+            //Row parameter checking is in range 0 -10..
+	        if (r < 0 || r > 10 || r == ""){
+               inputtxt    += "**Row count should between 0 - 10";
+		       x.innerHTML = inputtxt;
+		       x.style.color = "red";
+		       document.getElementById("row").style.backgroundColor = "lightpink";
+		       inputtxt += "<br>";
+		       err = "Y";
+
+	        }if (c < 0 || c > 10 || c == ""){                //Column parameter checking is in range 0 -10..
+
+		       inputtxt    += "**Column mark should between 0 - 10";
+		       x.innerHTML = inputtxt;
+		       x.style.color = "red";
+		       document.getElementById("col").style.backgroundColor = "lightpink";
+		       inputtxt += "<br>";
+               err = "Y";
+	        }
+	        //If no errors get in table population logic
+            if (err == "N"){
+               text = "<table>";
+               for(var i = 1;i<= r;i++){                    //For loop for Rows
+            	  text +="<tr>";
+            	  for(var j = 1;j<= c;j++){                 //For loop for Columns
+            		
+            		text +="<td>"+"Row"+i+"Col"+j+"</td>";
+            	  }
+            	  text +="</tr>";
+                }
+		        text += "<table>";
+		        document.getElementById("tablesp").innerHTML = text; //Output
+		    }
+		}
+	</script>
+</head>
+<body>
+
+     Number of Row: <input type="Number" name="row" id="row" min="1" max="10" value="1"><br>
+     <br>
+     Number of Col: <input type="Number" name="col" id="col" min="1" max="10" value="1"><br>
+     <button type="submit" onclick="rowcol()">Submit</button>
+     <p id="message"></p>
+
+     <div id="tablesp" align="center"> Table will Apper here.</div>
+
+</body>
+</html>
